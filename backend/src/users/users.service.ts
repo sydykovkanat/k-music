@@ -36,7 +36,12 @@ export class UsersService {
     });
   }
 
-  async getAllUsers() {
-    return this.prismaService.user.findMany();
+  async getUsers() {
+    return this.prismaService.user.findMany({
+      include: {
+        comments: true,
+        favoriteMusics: true,
+      },
+    });
   }
 }

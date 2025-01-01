@@ -16,7 +16,7 @@ model User {
   password       String
   displayName    String    @map("display_name")
   favoriteMusics Music[]   @relation("UserFavorites")
-  comment        Comment[]
+  comments       Comment[]
 
   @@map("users")
 }
