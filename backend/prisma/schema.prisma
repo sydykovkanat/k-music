@@ -1,0 +1,86 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  email          String    @unique
+  password       String
+  displayName    String    @map("display_name")
+  favoriteMusics Music[]   @relation("UserFavorites")
+  comment        Comment[]
+
+  @@map("users")
+}
+
+model Artist {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  name   String
+  avatar String
+  albums Album[] @relation("ArtistAlbums")
+  musics Music[] @relation("ArtistMusics")
+
+  @@map("artists")
+}
+
+model Album {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  title    String
+  cover    String
+  year     Int
+  artistId String
+  artist   Artist  @relation("ArtistAlbums", fields: [artistId], references: [id])
+  musics   Music[] @relation("AlbumMusics")
+
+  @@map("albums")
+}
+
+model Music {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  title       String
+  duration    Int
+  cover       String
+  lyrics      String?
+  year        Int
+  views       Int       @default(0)
+  likes       Int       @default(0)
+  artistId    String
+  albumId     String?
+  comments    Comment[]
+  artist      Artist    @relation("ArtistMusics", fields: [artistId], references: [id])
+  album       Album?    @relation("AlbumMusics", fields: [albumId], references: [id])
+  favoritedBy User[]    @relation("UserFavorites")
+
+  @@map("musics")
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  content String
+  userId  String
+  musicId String
+  user    User   @relation(fields: [userId], references: [id])
+  music   Music  @relation(fields: [musicId], references: [id])
+
+  @@map("comments")
+}
