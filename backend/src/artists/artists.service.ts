@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '@/prisma/prisma.service';
-import { CreateArtistDto } from '@/artists/dtos/create-artist.dto';
+import { ArtistDto } from '@/artists/dtos/artist.dto';
 import * as path from 'path';
 
 @Injectable()
@@ -34,7 +34,7 @@ export class ArtistsService {
     return artist;
   }
 
-  async create(dto: CreateArtistDto, avatar: Express.Multer.File) {
+  async create(dto: ArtistDto, avatar: Express.Multer.File) {
     const uploadPath = path.join('uploads', 'artists', avatar.filename);
 
     return this.prismaService.artist.create({
@@ -45,7 +45,7 @@ export class ArtistsService {
     });
   }
 
-  async update(id: string, dto: CreateArtistDto, avatar?: Express.Multer.File) {
+  async update(id: string, dto: ArtistDto, avatar?: Express.Multer.File) {
     const artist = await this.getArtistById(id);
 
     const uploadPath = avatar ? path.join('uploads', 'artists', avatar.filename) : undefined;

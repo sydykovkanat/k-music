@@ -12,7 +12,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { ArtistsService } from '@/artists/artists.service';
-import { CreateArtistDto } from '@/artists/dtos/create-artist.dto';
+import { ArtistDto } from '@/artists/dtos/artist.dto';
 import { JwtAccessGuard } from '@/auth/guards/jwt-access.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 
@@ -33,7 +33,7 @@ export class ArtistsController {
 
   @Post()
   @UseInterceptors(FileInterceptor('avatar'))
-  async createArtist(@Body() dto: CreateArtistDto, @UploadedFile() avatar: Express.Multer.File) {
+  async createArtist(@Body() dto: ArtistDto, @UploadedFile() avatar: Express.Multer.File) {
     if (!avatar) {
       throw new BadRequestException('Аватар обязателен');
     }
@@ -43,11 +43,7 @@ export class ArtistsController {
 
   @Put(':id')
   @UseInterceptors(FileInterceptor('avatar'))
-  async updateArtist(
-    @Param('id') id: string,
-    @Body() dto: CreateArtistDto,
-    @UploadedFile() avatar?: Express.Multer.File,
-  ) {
+  async updateArtist(@Param('id') id: string, @Body() dto: ArtistDto, @UploadedFile() avatar?: Express.Multer.File) {
     return this.artistsService.update(id, dto, avatar);
   }
 
