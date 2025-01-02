@@ -14,7 +14,12 @@ async function bootstrap() {
     mkdirSync(uploadDir);
   }
 
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      whitelist: true,
+    }),
+  );
   app.use(cookieParser());
   app.use('/uploads', express.static(join(process.cwd(), 'uploads')));
   await app.listen(process.env.PORT ?? 8000);

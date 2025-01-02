@@ -55,7 +55,7 @@ model Music {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   title       String
-  duration    Int
+  duration    String
   cover       String
   lyrics      String?
   year        Int

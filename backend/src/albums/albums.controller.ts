@@ -13,14 +13,10 @@ import {
 import { AlbumsService } from './albums.service';
 import { AlbumDto } from '@/albums/dtos/album.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { ArtistsService } from '@/artists/artists.service';
 
 @Controller('albums')
 export class AlbumsController {
-  constructor(
-    private readonly albumsService: AlbumsService,
-    private readonly artistsService: ArtistsService,
-  ) {}
+  constructor(private readonly albumsService: AlbumsService) {}
 
   @Get()
   async getAlbums() {
@@ -39,46 +35,13 @@ export class AlbumsController {
       throw new BadRequestException('Обложка обязательна');
     }
 
-    const year = Number(dto.year);
-
-    if (isNaN(year)) {
-      throw new BadRequestException('Год должен быть числом');
-    }
-
-    await this.artistsService.getArtistById(dto.artistId);
-
-    return this.albumsService.createAlbum(
-      {
-        title: dto.title,
-        year,
-        artistId: dto.artistId,
-      },
-      cover,
-    );
+    return this.albumsService.createAlbum(dto, cover);
   }
 
   @Put(':id')
   @UseInterceptors(FileInterceptor('cover'))
   async updateAlbum(@Param('id') id: string, @Body() dto: AlbumDto, @UploadedFile() cover?: Express.Multer.File) {
-    const year = Number(dto.year);
-
-    if (isNaN(year)) {
-      throw new BadRequestException('Год должен быть числом');
-    }
-
-    if (dto.artistId) {
-      await this.artistsService.getArtistById(dto.artistId);
-    }
-
-    return this.albumsService.updateAlbum(
-      id,
-      {
-        title: dto.title,
-        year,
-        artistId: dto.artistId,
-      },
-      cover,
-    );
+    return this.albumsService.updateAlbum(id, dto, cover);
   }
 
   @Delete(':id')

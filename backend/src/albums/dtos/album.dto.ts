@@ -1,12 +1,15 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNumber, IsString } from 'class-validator';
+import { GetStaticMsg } from '@/lib/get-static-msg';
+import { Type } from 'class-transformer';
 
 export class AlbumDto {
-  @IsString({ message: 'Заголовок обязателен' })
+  @IsString({ message: GetStaticMsg.requiredMsg('title') })
   title: string;
 
-  @IsString({ message: 'Идентификатор исполнителя обязателен' })
+  @IsString({ message: GetStaticMsg.requiredMsg('artistId') })
   artistId: string;
 
-  @IsNotEmpty({ message: 'Год обязателен' })
+  @IsNumber({}, { message: GetStaticMsg.numberMsg('year') })
+  @Type(() => Number)
   year: number;
 }
