@@ -6,3 +6,6 @@ export * from './nav-user';
 export * from './app-breadcrumb';
 export * from './login-form';
 export * from './logo';
+export * from './music-card';
+export * from './album-card';
+export * from './artist-card';

@@ -68,7 +68,7 @@ model Music {
   album       Album?    @relation("AlbumMusics", fields: [albumId], references: [id])
   favoritedBy User[]    @relation("UserFavorites")
 
-  @@map("musics")
+  @@map("search")
 }
 
 model Comment {

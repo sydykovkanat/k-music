@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import '../globals.css';
 import React from 'react';
-import { lineyka } from '@/shared/fonts/lineyka';
+import { nunito } from '@/shared/fonts/nunito';
 
 export const metadata: Metadata = {
-  title: 'K-Music | Авторизация',
+  title: 'K-MusicTypes | Авторизация',
   description: 'Войдите в свой аккаунт',
 };
 
@@ -15,7 +15,7 @@ export default function AuthLayout({
 }>) {
   return (
     <html lang='en' className={'dark'}>
-      <body className={`${lineyka.className} antialiased`}>{children}</body>
+      <body className={`${nunito.className} antialiased`}>{children}</body>
     </html>
   );
 }

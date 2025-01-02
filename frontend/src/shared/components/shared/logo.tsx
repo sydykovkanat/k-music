@@ -16,11 +16,11 @@ export function Logo({ className, size = 'md' }: Props) {
   return (
     <div
       className={cn(
-        'flex aspect-square size-11 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground',
+        'flex aspect-square size-11 items-center justify-center rounded-lg text-sidebar-primary-foreground',
         className,
       )}
     >
-      <Image src={'/logo.svg'} alt={'K-Music'} width={sizeMap[size]} height={sizeMap[size]} />
+      <Image src={'/logo.svg'} alt={'K-MusicTypes'} width={sizeMap[size]} height={sizeMap[size]} />
     </div>
   );
 }

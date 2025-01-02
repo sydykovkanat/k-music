@@ -1,9 +1,7 @@
-import { Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, Post } from '@nestjs/common';
 import { FavoritesService } from '@/favorites/favorites.service';
 import { CurrentUser } from '@/utils/decorators/current-user.decorator';
-import { JwtAccessGuard } from '@/auth/guards/jwt-access.guard';
 
-@UseGuards(JwtAccessGuard)
 @Controller('favorites')
 export class FavoritesController {
   constructor(private readonly favoritesService: FavoritesService) {}

@@ -1,10 +1,8 @@
-import { Body, Controller, Delete, Param, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Param, Post } from '@nestjs/common';
 import { CommentsService } from './comments.service';
 import { CommentDto } from '@/comments/dtos/comment.dto';
 import { CurrentUser } from '@/utils/decorators/current-user.decorator';
-import { JwtAccessGuard } from '@/auth/guards/jwt-access.guard';
 
-@UseGuards(JwtAccessGuard)
 @Controller('comments')
 export class CommentsController {
   constructor(private readonly commentsService: CommentsService) {}

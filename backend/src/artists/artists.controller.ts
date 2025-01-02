@@ -8,15 +8,12 @@ import {
   Post,
   Put,
   UploadedFile,
-  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { ArtistsService } from '@/artists/artists.service';
 import { ArtistDto } from '@/artists/dtos/artist.dto';
-import { JwtAccessGuard } from '@/auth/guards/jwt-access.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 
-@UseGuards(JwtAccessGuard)
 @Controller('artists')
 export class ArtistsController {
   constructor(private readonly artistsService: ArtistsService) {}

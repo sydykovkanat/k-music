@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 import '../globals.css';
 import React from 'react';
-import { lineyka } from '@/shared/fonts/lineyka';
 import { Separator, SidebarInset, SidebarProvider, SidebarTrigger } from '@/shared/components/ui';
 import { AppSidebar } from '@/shared/components/shared';
 import AppBreadcrumb from '@/shared/components/shared/app-breadcrumb';
+import { nunito } from '@/shared/fonts/nunito';
 
 export const metadata: Metadata = {
-  title: 'K-Music',
+  title: 'K-MusicTypes',
   description: 'Все ваши любимые песни в одном месте',
 };
 
@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' className={'dark'}>
-      <body className={`${lineyka.className} antialiased`}>
+      <body className={`${nunito.className} antialiased`}>
         <SidebarProvider>
           <AppSidebar />
           <SidebarInset>

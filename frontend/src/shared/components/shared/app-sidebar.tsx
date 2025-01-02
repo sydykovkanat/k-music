@@ -4,20 +4,10 @@ import * as React from 'react';
 import { Frame, LifeBuoy, Map, PieChart, Send } from 'lucide-react';
 
 import { NavMain } from '@/shared/components/shared/nav-main';
-import { NavProjects } from '@/shared/components/shared/nav-projects';
 import { NavUser } from '@/shared/components/shared/nav-user';
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from '@/shared/components/ui/sidebar';
-import Image from 'next/image';
-import Link from 'next/link';
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader } from '@/shared/components/ui/sidebar';
 import { CollectionIcon, MusicIcon, SearchAreaIcon } from '@/shared/icons';
+import { Logo } from '@/shared/components/shared/logo';
 
 const data = {
   user: {
@@ -78,25 +68,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar variant='inset' {...props}>
       <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton size='lg' asChild>
-              <Link href='/' className={'py-7 px-[0.4rem]'}>
-                <div className='flex aspect-square size-11 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground'>
-                  <Image src={'/logo.svg'} alt={'K-Music'} width={38} height={38} />
-                </div>
-                <div className='grid flex-1 text-left text-sm leading-tight'>
-                  <span className='truncate font-semibold'>K-Music</span>
-                  <span className='truncate text-xs'>Музыкальный сервис</span>
-                </div>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
+        <div className='flex items-center gap-1 text-2xl font-semibold'>
+          <Logo />
+          K-Music
+        </div>
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

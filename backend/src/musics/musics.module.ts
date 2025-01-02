@@ -13,7 +13,7 @@ import { AlbumsService } from '@/albums/albums.service';
     MulterModule.register({
       storage: diskStorage({
         destination: (_req, _file, cb) => {
-          const uploadDir = join(process.cwd(), 'uploads/musics');
+          const uploadDir = join(process.cwd(), 'uploads/search');
 
           if (!existsSync(uploadDir)) {
             mkdirSync(uploadDir);

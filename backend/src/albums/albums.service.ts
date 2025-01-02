@@ -8,7 +8,11 @@ export class AlbumsService {
   constructor(private prismaService: PrismaService) {}
 
   async getAlbums() {
-    return this.prismaService.album.findMany();
+    return this.prismaService.album.findMany({
+      include: {
+        artist: true,
+      },
+    });
   }
 
   async getAlbumById(id: string) {
@@ -19,7 +23,7 @@ export class AlbumsService {
     });
 
     if (!album) {
-      throw new NotFoundException('Album not found');
+      throw new NotFoundException('AlbumTypes not found');
     }
 
     return album;
