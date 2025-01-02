@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { BookOpen, Bot, Command, Frame, LifeBuoy, Map, PieChart, Send, SquareTerminal } from 'lucide-react';
+import { Frame, LifeBuoy, Map, PieChart, Send } from 'lucide-react';
 
 import { NavMain } from '@/shared/components/shared/nav-main';
 import { NavProjects } from '@/shared/components/shared/nav-projects';
@@ -15,6 +15,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/shared/components/ui/sidebar';
+import Image from 'next/image';
+import Link from 'next/link';
+import { CollectionIcon, MusicIcon, SearchAreaIcon } from '@/shared/icons';
 
 const data = {
   user: {
@@ -24,20 +27,20 @@ const data = {
   },
   navMain: [
     {
-      title: 'Главная',
-      url: '/',
-      icon: SquareTerminal,
-      isActive: true,
+      title: 'Поиск',
+      url: '/search',
+      icon: SearchAreaIcon,
     },
     {
-      title: 'Музыка',
-      url: '/musics',
-      icon: Bot,
+      title: 'Главная',
+      url: '/',
+      icon: MusicIcon,
+      isActive: true,
     },
     {
       title: 'Коллекции',
       url: '/collections',
-      icon: BookOpen,
+      icon: CollectionIcon,
     },
   ],
   navSecondary: [
@@ -78,15 +81,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size='lg' asChild>
-              <a href='#'>
-                <div className='flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground'>
-                  <Command className='size-4' />
+              <Link href='/' className={'py-7 px-[0.4rem]'}>
+                <div className='flex aspect-square size-11 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground'>
+                  <Image src={'/logo.svg'} alt={'K-Music'} width={38} height={38} />
                 </div>
                 <div className='grid flex-1 text-left text-sm leading-tight'>
-                  <span className='truncate font-semibold'>Acme Inc</span>
-                  <span className='truncate text-xs'>Enterprise</span>
+                  <span className='truncate font-semibold'>K-Music</span>
+                  <span className='truncate text-xs'>Музыкальный сервис</span>
                 </div>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

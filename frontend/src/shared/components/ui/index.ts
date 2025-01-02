@@ -9,3 +9,5 @@ export * from './collapsible';
 export * from './avatar';
 export * from './dropdown-menu';
 export * from './breadcrumb';
+export * from './label';
+export * from './card';

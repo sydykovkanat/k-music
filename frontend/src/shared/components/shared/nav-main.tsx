@@ -1,6 +1,6 @@
 'use client';
 
-import { ChevronRight, type LucideIcon } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/shared/components/ui/collapsible';
 import {
@@ -15,6 +15,7 @@ import {
   SidebarMenuSubItem,
 } from '@/shared/components/ui/sidebar';
 import Link from 'next/link';
+import React from 'react';
 
 export function NavMain({
   items,
@@ -22,7 +23,7 @@ export function NavMain({
   items: {
     title: string;
     url: string;
-    icon: LucideIcon;
+    icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
     isActive?: boolean;
     items?: {
       title: string;

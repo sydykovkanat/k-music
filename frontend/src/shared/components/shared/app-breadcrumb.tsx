@@ -17,7 +17,6 @@ export default function AppBreadcrumb() {
 
   const translations: Record<string, string> = {
     favorites: 'Избранные',
-    musics: 'Музыка',
     collections: 'Коллекции',
   };
 

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import './globals.css';
+import '../globals.css';
 import React from 'react';
 import { lineyka } from '@/shared/fonts/lineyka';
 import { Separator, SidebarInset, SidebarProvider, SidebarTrigger } from '@/shared/components/ui';
@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html lang='en' className={'dark'}>
       <body className={`${lineyka.className} antialiased`}>
         <SidebarProvider>
           <AppSidebar />
