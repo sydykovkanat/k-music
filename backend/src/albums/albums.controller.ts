@@ -8,12 +8,15 @@ import {
   Post,
   Put,
   UploadedFile,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { AlbumsService } from './albums.service';
 import { AlbumDto } from '@/albums/dtos/album.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { JwtAccessGuard } from '@/auth/guards/jwt-access.guard';
 
+@UseGuards(JwtAccessGuard)
 @Controller('albums')
 export class AlbumsController {
   constructor(private readonly albumsService: AlbumsService) {}

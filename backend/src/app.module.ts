@@ -6,6 +6,7 @@ import { ArtistsModule } from './artists/artists.module';
 import { AlbumsModule } from './albums/albums.module';
 import { MusicsModule } from './musics/musics.module';
 import { CommentsModule } from './comments/comments.module';
+import { FavoritesModule } from './favorites/favorites.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { CommentsModule } from './comments/comments.module';
     AlbumsModule,
     MusicsModule,
     CommentsModule,
+    FavoritesModule,
   ],
   controllers: [],
   providers: [],
