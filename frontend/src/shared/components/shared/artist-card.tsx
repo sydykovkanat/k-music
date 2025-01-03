@@ -9,16 +9,19 @@ interface Props {
 }
 
 export function ArtistCard({ artist, className }: Props) {
+  const imageUrl = new URL(artist.avatar, API_URL).toString();
+
   return (
-    <div className={cn(className)}>
+    <div className={cn('w-[200px]', className)}>
       <Image
-        src={`${API_URL}/${artist.avatar}`}
+        src={imageUrl}
         alt={artist.name}
         width={200}
         height={200}
-        className={'rounded-full shadow-lg border'}
+        className='rounded-full shadow-lg border size-[200px] object-cover'
+        priority
       />
-      <h5 className={'text-center font-semibold'}>{artist.name}</h5>
+      <h5 className='text-center font-semibold'>{artist.name}</h5>
     </div>
   );
 }

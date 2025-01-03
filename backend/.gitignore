@@ -3,7 +3,9 @@
 /node_modules
 /build
 
-uploads
+uploads/albums
+uploads/artists
+uploads/musics
 
 # Logs
 logs
